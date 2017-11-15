@@ -2,37 +2,46 @@ const express = require('express');
 const constants = require('./config/constants');
 
 const app = express();
-const exphbs  = require('express-handlebars');
+const hbs = require('hbs');
 const helpers = require('handlebars-helpers')();
 
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
+const unirest = require('unirest');
 
 const port = process.env.PORT || 8000;
 const path = require('path');
-const open = require('open');
 const favicon = require('serve-favicon');
-const routes = require(constants.mainDirectory + '/routes/routes');
 
-const hbs = exphbs.create({
-    partialsDir: __dirname + '/' + constants.mainDirectory + '/dev/partials'
-});
+hbs.registerPartials(__dirname + '/dev/partials');
 
-app.use(morgan('dev'));
-app.use(express.static(__dirname + '/' + constants.mainDirectory + '/build/'));
-app.use(favicon(path.join(__dirname + '/' + constants.mainDirectory + '/build/assets/img', 'favicon.ico')));
+app.use(express.static(__dirname + '/build'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname,'/' + constants.mainDirectory + '/dev'));
-app.engine('handlebars', hbs.engine);
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/dev/');
 
 // routes
-app.use('/', routes);
+
+// Routes: Sites
+app.get('/', function(req, res, next) {
+	res.render('')
+});
+
+// Routes: Sites
+app.get('/users/:_id', function(req, res, next) {
+	let _id = req.params._id;
+
+	var request = unirest.get('https://niemeyer.hackaetano.com/users/'+_id+'/matches');
+
+	request
+	.header('Accept', 'application/json')
+	.end(function(response) {
+		res.render('properties', response.body);
+	});
+});
 
 app.listen(port, () => {
     console.log(`Everest is running at port: ${port}`);
-    open(`http://localhost:${port}/`);
 })
