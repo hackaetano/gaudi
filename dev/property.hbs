@@ -17,10 +17,14 @@
                         <div class="col-md-8">
                             <div class="tile-basic">
                                 <div class="tile-image title-image-single">
-                                    <a href="#"><img src="assets/images/preview/img-1.jpg" alt=""></a>
+                                    <a href="#">
+                                        {{#if characteristics.images.[1]}}
+                                        <img src="{{characteristics.images.[1]}}" alt="">
+                                        {{/if}}
+                                    </a>
                                     <div class="tile-image-title">
-                                        <h2 class="h2">Apartamento Largo do Arouche, 418 </h2>
-                                        <p class="h3">República, São Paulo - SP</p>
+                                        <h2 class="h2">{{characteristics.title}}</h2>
+                                        <p class="h3"></p>
                                     </div>
                                 </div>
                             </div>
@@ -28,12 +32,20 @@
                         <div class="col-md-4">
                             <div class="tile-basic">
                                 <div class="tile-image title-image-single">
-                                    <a href="#"><img src="assets/images/preview/img-4.jpg" alt=""></a>
+                                    <a href="#">
+                                        {{#if characteristics.images.[2]}}
+                                            <img src="{{characteristics.images.[2]}}" alt="">
+                                        {{/if}}
+                                    </a>
                                 </div>
                             </div>
                             <div class="tile-basic">
                                 <div class="tile-image title-image-single">
-                                    <a href="#"><img src="assets/images/preview/img-6.jpg" alt=""></a>
+                                    <a href="#">
+                                        {{#if characteristics.images.[3]}}
+                                            <img src="{{characteristics.images.[3]}}" alt="">
+                                        {{/if}}
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -45,36 +57,36 @@
                                 <ul class="property-info text-center">
                                     <li>
                                         <h2 class="text-muted">Aluguel</h2>
-                                        <p class="big text-success">R$ 1.500,00</p>
+                                        <p class="big text-success">R$ {{characteristics.pricing.rent}}</p>
                                     </li>
                                     <li>
                                         <h2 class="text-muted">Condomínio</h2>
-                                        <p class="big text-success">R$ 480,00</p>
+                                        <p class="big text-success">R$ {{characteristics.pricing.condominium}}</p>
                                     </li>
                                     <li>
                                         <h2 class="text-muted">IPTU</h2>
-                                        <p class="big text-success">R$ 40,00</p>
+                                        <p class="big text-success">R$ {{characteristics.pricing.tax}}</p>
                                     </li>
                                     <li>
                                         <h2 class="text-muted">Área Útil (m²)</h2>
-                                        <p class="big">166.12</p>
+                                        <p class="big">{{characteristics.area}}</p>
                                     </li>
                                     <li>
                                         <h2 class="text-muted">Dormitórios</h2>
-                                        <p class="big">2</p>
-                                        <p class="small">(1 Suite)</p>
+                                        <p class="big">{{features.essencials.rooms}}</p>
+                                        <p class="small">
+                                            {{#if features.essencials.suites}}
+                                            ({{features.essencials.suites}} Suite(s))
+                                            {{/if}}
+                                        </p>
                                     </li>
                                     <li>
                                         <h2 class="text-muted">Banheiros</h2>
-                                        <p class="big">1</p>
-                                    </li>
-                                    <li>
-                                        <h2 class="text-muted">Salas</h2>
-                                        <p class="big">2</p>
+                                        <p class="big">{{features.essencials.bathrooms}}</p>
                                     </li>
                                     <li>
                                         <h2 class="text-muted">Garagem</h2>
-                                        <p class="big">1</p>
+                                        <p class="big">{{features.essencials.parkingSpace}}</p>
                                     </li>
                                 </ul>
                             </div>
@@ -84,6 +96,7 @@
                     <div class="container container-boxed">
                         <div class="row">
                             <div class="col-md-8 hidden-mobile">
+                                {{#if characteristics.description}}
                                 <div class="tile-basic margin-bottom-0">
                                     <div class="app-heading title-only">
                                         <div class="icon">
@@ -94,10 +107,13 @@
                                         </div>
                                     </div>
                                     <div class="tile-content text-left padding-20 padding-top-5">
-                                        <p>Largo do Arouche - Apto de 01 dorm - amplo com 55m úteis - sem vaga - Piso de madeira/taco - banheiro com box - area de serviço conjugada ao banheiro - pintura nova - predio com Portaria 24 horas - Da localziação proximo aos metros Santa Cecilia e Republica Dos valores: R$ 1.100,00 locação R$ 420,00 cond IPTU Isento CODIGO:BRASIL-008</p>
+                                        <p>{{characteristics.description}}</p>
                                     </div>
                                 </div>
+                                {{/if}}
 
+
+                                {{#if features.amenities.all}}
                                 <div class="tile-basic margin-bottom-10">
                                     <div class="app-heading title-only">
                                         <div class="icon">
@@ -108,68 +124,19 @@
                                         </div>
                                     </div>
                                     <div class="tile-content text-left padding-20 padding-top-5">
-                                        <div class="col-md-4">
+                                        <div class="col-md-12">
                                             <div class="list-group list-group-noborder">
+                                                {{#each features.amenities.all }}
                                                 <div class="list-group-item">
-                                                    <span class="icon-checkmark-circle"></span>
-                                                    Item 1
+                                                    <span class="icon-checkmark-circle text-success"></span>
+                                                    {{this}}
                                                 </div>
-                                                <div class="list-group-item">
-                                                    <span class="icon-checkmark-circle"></span>
-                                                    Item 1
-                                                </div>
-                                                <div class="list-group-item">
-                                                    <span class="icon-checkmark-circle"></span>
-                                                    Item 1
-                                                </div>
-                                                <div class="list-group-item">
-                                                    <span class="icon-checkmark-circle"></span>
-                                                    Item 1
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="list-group list-group-noborder">
-                                                <div class="list-group-item">
-                                                    <span class="icon-checkmark-circle"></span>
-                                                    Item 1
-                                                </div>
-                                                <div class="list-group-item">
-                                                    <span class="icon-checkmark-circle"></span>
-                                                    Item 1
-                                                </div>
-                                                <div class="list-group-item">
-                                                    <span class="icon-checkmark-circle"></span>
-                                                    Item 1
-                                                </div>
-                                                <div class="list-group-item">
-                                                    <span class="icon-checkmark-circle"></span>
-                                                    Item 1
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="list-group list-group-noborder">
-                                                <div class="list-group-item">
-                                                    <span class="icon-checkmark-circle"></span>
-                                                    Item 1
-                                                </div>
-                                                <div class="list-group-item">
-                                                    <span class="icon-checkmark-circle"></span>
-                                                    Item 1
-                                                </div>
-                                                <div class="list-group-item">
-                                                    <span class="icon-checkmark-circle"></span>
-                                                    Item 1
-                                                </div>
-                                                <div class="list-group-item">
-                                                    <span class="icon-checkmark-circle"></span>
-                                                    Item 1
-                                                </div>
+                                                {{/each}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                {{/if}}
                             </div>
 
                             <div class="col-md-4 hidden-mobile">
@@ -179,13 +146,13 @@
                                             <div class="contact contact-rounded contact-bordered contact-lg margin-bottom-20">
                                                 <img src="assets/images/real-estate/vivareal-original.png">
                                                 <div class="contact-container">
-                                                    <a href="#">Viva Real</a>
-                                                    <span>Market Place</span>
+                                                    <a href="#">{{source.name}}</a>
+                                                    <span>Cód. Imóvel - {{source.code}}</span>
                                                 </div>
                                             </div>
 
                                             <div class="padding-0">
-                                                <a href="#" class="btn btn-block btn-success btn-lg btn-icon-fixed">
+                                                <a href="https://www.vivareal.com.br/{{source.url}}" target="_blank" class="btn btn-block btn-success btn-lg btn-icon-fixed">
                                                     <span class="icon-link"></span> Entrar em Contato
                                                 </a>
                                             </div>
@@ -414,11 +381,11 @@
                                         <div class="app-widget-informer">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <input class="knob" data-fgColor="#84bf43" data-thickness=".5" data-displayInput="false" readonly value="39" data-min="0" data-max="45" data-width="100%">
+                                                    <input class="knob" data-fgColor="#84bf43" data-thickness=".5" data-displayInput="false" readonly value="{{characteristics.pricePerArea}}" data-min="0" data-max="{{characteristics.mediumPricePerAreaDistrict}}" data-width="100%">
                                                 </div>
                                                 <div class="col-md-9">
                                                     <div class="subtitle">Deste Imóvel<span class="icon-arrow-down text-success"></span> </div>
-                                                    <div class="intval">R$ 39,00</div>
+                                                    <div class="intval">R$ {{characteristics.pricePerArea}}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -426,11 +393,11 @@
                                         <div class="app-widget-informer">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <input class="knob" data-fgColor="#f04e51" data-thickness=".5" data-displayInput="false" readonly value="45" data-min="0" data-max="45" data-width="100%">
+                                                    <input class="knob" data-fgColor="#f04e51" data-thickness=".5" data-displayInput="false" readonly value="{{characteristics.mediumPricePerAreaDistrict}}" data-min="0" data-max="{{characteristics.pricePerArea}}" data-width="100%">
                                                 </div>
                                                 <div class="col-md-9">
                                                     <div class="subtitle">Da Vizinhaça<span class="icon-arrow-up text-danger"></span> </div>
-                                                    <div class="intval">R$ 45,00</div>
+                                                    <div class="intval">R$ {{{characteristics.mediumPricePerAreaDistrict}}</div>
                                                 </div>
                                             </div>
                                         </div>

@@ -1,7 +1,6 @@
 const request = require('request');
 class PropertiesController {
-	getProperties (_id) {
-	}
+	getProperties (_id) {}
 }
 
 module.exports = function() {
