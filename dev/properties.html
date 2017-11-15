@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Sherlock Homes</title>
+        //= partials/meta-section.html
+        //= partials/styles-include.html
+    </head>
+    <body>
+        <!-- APP WRAPPER -->
+        <div class="app">
+            <!-- START APP CONTAINER -->
+            <div class="app-container">
+                <!-- START APP CONTENT -->
+                <div class="app-content">
+                    //= partials/header.html
+                    <!-- START PAGE CONTAINER -->
+                    <div class="container container-full-size block-flying-container">
+                        <div id="google_map_wide" class="pull-left" style="width: 100%; height: 100%;"></div>
+                        //= partials/sidebars/properties-results.html
+                    </div>
+                    <!-- END PAGE CONTAINER -->
+                </div>
+                <!-- END APP CONTENT -->
+            </div>
+            <!-- END APP CONTAINER -->
+
+            //= partials/sidepanels/default.html
+        </div>
+        <!-- END APP WRAPPER -->
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdT8Vc4Gc2uMed0VG2kPbibbytrVAwuv0"></script>
+
+        //= partials/scripts-important-include.html
+        <!-- THIS PAGE SCRIPTS -->
+        <script type="text/javascript" src="js/vendor/bootstrap-select/bootstrap-select.js"></script>
+        <!-- END THIS PAGE SCRIPTS -->
+        //= partials/scripts-app-include.html
+    </body>
+</html>
